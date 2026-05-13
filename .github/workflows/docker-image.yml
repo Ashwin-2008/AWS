@@ -15,7 +15,8 @@ jobs:
 
       - name: Create ZIP Deployment Package
         run: |
-          zip -r deploy.zip . \
+          cd student-management-system
+          zip -r ../deploy.zip . \
             -x "*.git*" \
             -x "node_modules/*"
 
