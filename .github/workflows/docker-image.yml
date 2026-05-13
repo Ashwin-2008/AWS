@@ -29,5 +29,14 @@ jobs:
           application_name: ${{ secrets.EB_APPLICATION_NAME }}
           environment_name: ${{ secrets.EB_ENVIRONMENT_NAME }}
           region: ${{ secrets.AWS_REGION }}
-          version_label: github-action-${{ github.run_number }}
+
+          # Unique version every deployment
+          version_label: github-action-${{ github.sha }}
+
           deployment_package: deploy.zip
+
+          # Prevent duplicate version errors
+          use_existing_version_if_available: true
+
+          # Wait for deployment to complete
+          wait_for_deployment: true
